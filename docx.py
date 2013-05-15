@@ -57,7 +57,9 @@ nsprefixes = {
     # Content Types (we're just making up our own namespaces here to save time)
     'ct':'http://schemas.openxmlformats.org/package/2006/content-types',
     # Package Relationships (we're just making up our own namespaces here to save time)
-    'pr':'http://schemas.openxmlformats.org/package/2006/relationships'
+    'pr':'http://schemas.openxmlformats.org/package/2006/relationships',
+    # Per XML space standard
+    'xml':'http://www.w3.org/XML/1998/namespace'
     }
 
 def opendocx(file):
