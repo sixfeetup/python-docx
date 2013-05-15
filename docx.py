@@ -134,7 +134,7 @@ def pagebreak(type='page', orient='portrait'):
         pagebreak.append(pPr)
     return pagebreak
 
-def paragraph(paratext,style='BodyText',breakbefore=False,jc='left'):
+def paragraph(paratext,style='BodyText',breakbefore=False,jc='left', **kwargs):
     '''Make a new paragraph element, containing a run, and some text.
     Return the paragraph element.
 
@@ -158,13 +158,20 @@ def paragraph(paratext,style='BodyText',breakbefore=False,jc='left'):
     # Make our elements
     paragraph = makeelement('p')
 
+    attributes = None
+    attrnsprefix = None
+    if 'attributes' in kwargs:
+        attributes = kwargs['attributes']
+    if 'attrnsprefix' in kwargs:
+        attrnsprefix = kwargs['attrnsprefix']
+
     if isinstance(paratext, list):
         text = []
         for pt in paratext:
             if isinstance(pt, (list,tuple)):
-                text.append([makeelement('t',tagtext=pt[0]), pt[1]])
+                text.append([makeelement('t',tagtext=pt[0], attributes=attributes, attrnsprefix=attrnsprefix), pt[1]])
             else:
-                text.append([makeelement('t',tagtext=pt), ''])
+                text.append([makeelement('t',tagtext=pt[0], attributes=attributes, attrnsprefix=attrnsprefix), ''])
     else:
         text = [[makeelement('t',tagtext=paratext),''],]
     pPr = makeelement('pPr')
